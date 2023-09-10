@@ -58,7 +58,9 @@ public class Train {
     public void setRailcars(Map<RailcarType, Integer> railcars) {
         this.railcars = railcars;
     }
-
+    public Integer getRailcarsNumber(RailcarType type){
+        return this.railcars.get(type);
+    }
     public Map<RailcarType, Integer> getRailcars() {
         return railcars;
     }
