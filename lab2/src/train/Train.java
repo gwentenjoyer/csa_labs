@@ -67,14 +67,14 @@ public class Train {
     public static Train createTrain(){
         Train train = new Train();
         Scanner scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         System.out.println("Enter destination: ");
         train.setDestination(scanner.nextLine());
         System.out.println("Enter train number: ");
         train.setTrainNumber(scanner.nextInt());
         // Consuming "\n" character
         scanner.nextLine();
-        System.out.println("Enter departure time date in format HH:mm dd-MM-yy: ");
+        System.out.println("Enter departure time date in format HH:mm dd-MM-yyyy: ");
         train.setDepartureTime(LocalDateTime.parse(scanner.nextLine(), formatter));
         System.out.println("Set number of general cars: ");
         train.setRailcarNumber(RailcarType.GENERAL, scanner.nextInt());
@@ -89,7 +89,7 @@ public class Train {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yy");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         stringBuilder.append(String.format("Destination: %s\nTrain number: %s\nDeparture time: %s\n",
                 this.destination, this.trainNumber, this.departureTime.format(dateTimeFormatter)));
 

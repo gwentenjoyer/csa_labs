@@ -2,24 +2,24 @@ package main;
 
 import train.Train;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 //    private static Train[] trains;
     public static void main(String args[]){
-//        Train train = new Train("Lviv", 234, LocalDateTime.of(2023, 11, 15, 17, 45));
-        Train[] trains = new Train[2];
+        Train[] trains = new Train[1];
         for (int i = 0; i < trains.length; i++) {
             trains[i] = Train.createTrain();
         }
-//        train.setRailcarNumber(RailcarType.GENERAL, 22);
-//        train.setRailcarNumber(RailcarType.COUPE, 11);
-        String destination = "Lviv";
-        Train[] trainsWithDestination = haveDestination(trains, destination);
-//        for (int i = 0; i < trains.length; i++) {
-//            System.out.println(trains[i]);
-//        }
+        Train[] trainsWithDestination = haveDestination(trains, "Lviv");
+        Train[] trainsWithDestinationAndTime = haveDestinationAndAfterDateTime(trains, "New York", LocalDateTime.of(2001, 9, 11, 17, 30));
+
         for (int i = 0; i < trainsWithDestination.length; i++) {
+            System.out.println(trains[i]);
+        }
+        for (int i = 0; i < trainsWithDestinationAndTime.length; i++) {
             System.out.println(trains[i]);
         }
     }
@@ -35,5 +35,16 @@ public class Main {
         }
         Train[] result = new Train[haveDest.size()];
         return haveDest.toArray(result);
+    }
+    public static Train[] haveDestinationAndAfterDateTime(Train[] trains, String dest, LocalDateTime time){
+        ArrayList<Train> arrayList = new ArrayList<>(Arrays.stream(haveDestination(trains, dest)).toList());
+        for (Train tr:
+             arrayList) {
+            if(!tr.getDepartureTime().isAfter(time)){
+                arrayList.remove(tr);
+            }
+        }
+        Train[] result = new Train[arrayList.size()];
+        return arrayList.toArray(result);
     }
 }
