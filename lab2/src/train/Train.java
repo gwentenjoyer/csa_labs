@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Train {
     private String destination;
@@ -62,6 +63,29 @@ public class Train {
         return railcars;
     }
 
+
+    public static Train createTrain(){
+        Train train = new Train();
+        Scanner scanner = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yy");
+        System.out.println("Enter destination: ");
+        train.setDestination(scanner.nextLine());
+        System.out.println("Enter train number: ");
+        train.setTrainNumber(scanner.nextInt());
+        // Consuming "\n" character
+        scanner.nextLine();
+        System.out.println("Enter departure time date in format HH:mm dd-MM-yy: ");
+        train.setDepartureTime(LocalDateTime.parse(scanner.nextLine(), formatter));
+        System.out.println("Set number of general cars: ");
+        train.setRailcarNumber(RailcarType.GENERAL, scanner.nextInt());
+        System.out.println("Set number of couple cars: ");
+        train.setRailcarNumber(RailcarType.COUPE, scanner.nextInt());
+        System.out.println("Set number of plazcart cars: ");
+        train.setRailcarNumber(RailcarType.PLATZKART, scanner.nextInt());
+        System.out.println("Set number of luxury cars: ");
+        train.setRailcarNumber(RailcarType.LUXURY, scanner.nextInt());
+        return train;
+    }
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
