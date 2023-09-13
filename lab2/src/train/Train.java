@@ -90,46 +90,6 @@ public class Train {
         return train;
     }
 
-    public static Train[] haveDestination(Train[] trains, String dest){
-        if(trains == null){
-            throw new NullPointerException();
-        }
-        ArrayList<Train> haveDest = new ArrayList<>();
-        for (int i = 0; i < trains.length; i++) {
-            if(trains[i].getDestination().equals(dest)){
-                haveDest.add(trains[i]);
-            }
-        }
-        Train[] result = new Train[haveDest.size()];
-        return haveDest.toArray(result);
-    }
-    public static Train[] haveDestinationAndAfterDateTime(Train[] trains, String dest, LocalDateTime time){
-//        ArrayList<Train> arrayList = new ArrayList<>(Arrays.stream(haveDestination(trains, dest)).toList());
-        Train[] trainsWithDestination = Train.haveDestination(trains, dest);
-        ArrayList<Train> arrayList = new ArrayList<>();
-        for (Train tr:
-                trainsWithDestination) {
-            if(tr.getDepartureTime().isAfter(time)){
-                arrayList.add(tr);
-            }
-        }
-        Train[] result = new Train[arrayList.size()];
-        return arrayList.toArray(result);
-    }
-    public static Train[] haveDestinationAndHaveGeneralCars(Train[] trains, String dest){
-        Train[] trainsWithDestination = Train.haveDestination(trains, dest);
-        ArrayList<Train> arrayList = new ArrayList<>();
-        for (Train tr:
-                trainsWithDestination) {
-            if(tr.getRailcarsNumber(RailcarType.GENERAL) > 0){
-                arrayList.add(tr);
-            }
-        }
-
-        Train[] result = new Train[arrayList.size()];
-        return arrayList.toArray(result);
-    }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
