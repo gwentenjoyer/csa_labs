@@ -12,11 +12,6 @@ public class Main {
         for (int i = 0; i < trains.length; i++) {
             trains[i] = Train.createTrain();
         }
-
-//        Train[] trainsWithDestination = haveDestination(trains, "Lviv");
-//        for (int i = 0; i < trainsWithDestination.length; i++) {
-//            System.out.println(trains[i]);
-//        }
         Train[] trainsWithDestinationAndTime = Main.haveDestinationAndAfterDateTime(trains, "New York", LocalDateTime.of(2001, 9, 11, 17, 30));
         for (int i = 0; i < trainsWithDestinationAndTime.length; i++) {
             System.out.println(trains[i]);
@@ -41,7 +36,6 @@ public class Main {
         return haveDest.toArray(result);
     }
     public static Train[] haveDestinationAndAfterDateTime(Train[] trains, String dest, LocalDateTime time){
-//        ArrayList<Train> arrayList = new ArrayList<>(Arrays.stream(haveDestination(trains, dest)).toList());
         Train[] trainsWithDestination = Main.haveDestination(trains, dest);
         ArrayList<Train> arrayList = new ArrayList<>();
         for (Train tr:
@@ -62,7 +56,6 @@ public class Main {
                 arrayList.add(tr);
             }
         }
-
         Train[] result = new Train[arrayList.size()];
         return arrayList.toArray(result);
     }
