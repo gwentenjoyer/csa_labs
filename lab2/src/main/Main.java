@@ -5,6 +5,7 @@ import train.Train;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String args[]){
@@ -26,7 +27,7 @@ public class Main {
         if(trains == null){
             throw new NullPointerException();
         }
-        ArrayList<Train> haveDest = new ArrayList<>();
+        List<Train> haveDest = new ArrayList<>();
         for (int i = 0; i < trains.length; i++) {
             if(trains[i].getDestination().equals(dest)){
                 haveDest.add(trains[i]);
@@ -37,7 +38,7 @@ public class Main {
     }
     public static Train[] haveDestinationAndAfterDateTime(Train[] trains, String dest, LocalDateTime time){
         Train[] trainsWithDestination = Main.haveDestination(trains, dest);
-        ArrayList<Train> arrayList = new ArrayList<>();
+        List<Train> arrayList = new ArrayList<>();
         for (Train tr:
                 trainsWithDestination) {
             if(tr.getDepartureTime().isAfter(time)){
@@ -49,7 +50,7 @@ public class Main {
     }
     public static Train[] haveDestinationAndHaveGeneralCars(Train[] trains, String dest){
         Train[] trainsWithDestination = Main.haveDestination(trains, dest);
-        ArrayList<Train> arrayList = new ArrayList<>();
+        List<Train> arrayList = new ArrayList<>();
         for (Train tr:
                 trainsWithDestination) {
             if(tr.getRailcarsNumber(RailcarType.GENERAL) > 0){
