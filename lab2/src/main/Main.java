@@ -9,23 +9,38 @@ import java.util.List;
 
 public class Main {
     public static void main(String args[]){
-        Train[] trains = new Train[1];
-        for (int i = 0; i < trains.length; i++) {
-            trains[i] = Train.createTrain();
-        }
+        Train[] trains = arrayMaker(6);
         Train[] trainsWithDestinationAndTime = Main.haveDestinationAndAfterDateTime(trains, "New York", LocalDateTime.of(2001, 9, 11, 17, 30));
         for (int i = 0; i < trainsWithDestinationAndTime.length; i++) {
-            System.out.println(trains[i]);
+        }
+        for (Train train:
+                trainsWithDestinationAndTime) {
+            System.out.println(train);
         }
         Train[] trainsWithDestinationAndGeneralCars = Main.haveDestinationAndHaveGeneralCars(trains, "Lviv");
-        for (int i = 0; i < trainsWithDestinationAndGeneralCars.length; i++) {
-            System.out.println(trains[i]);
+        for (Train train:
+                trainsWithDestinationAndGeneralCars) {
+            System.out.println(train);
         }
     }
 
+    public static Train[] arrayMaker(int count){
+        Train[] trains = new Train[count];
+        for (int i = 0; i < trains.length; i++) {
+            trains[i] = new Train();
+            trains[i].setDestination("Lviv");
+            trains[i].setTrainNumber(42);
+            trains[i].setDepartureTime(LocalDateTime.of(2023 + i, 9, 20, 17, (40 + i * 5) % 60));
+            trains[i].setRailcarNumber(RailcarType.GENERAL, 10 + i);
+            trains[i].setRailcarNumber(RailcarType.COUPE, 14 + i);
+            trains[i].setRailcarNumber(RailcarType.PLATZKART, 8 + i);
+            trains[i].setRailcarNumber(RailcarType.LUXURY, 1 + i);
+        }
+        return trains;
+    }
     public static Train[] haveDestination(Train[] trains, String dest){
         if(trains == null){
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         List<Train> haveDest = new ArrayList<>();
         for (int i = 0; i < trains.length; i++) {
